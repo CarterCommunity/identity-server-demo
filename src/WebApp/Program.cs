@@ -13,7 +13,6 @@ namespace WebApp
             var host = new WebHostBuilder()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseKestrel()
-                .UseUrls("http://localhost:8888")
                 .UseStartup<Startup>()
                 .Build();
 

@@ -9,7 +9,7 @@
     {
         static async Task Main(string[] args)
         {
-            var disco = await DiscoveryClient.GetAsync("http://localhost:6666");
+            var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
             if (disco.IsError)
             {
                 await Console.Error.WriteLineAsync($"Discovery error: {disco.Error}");
@@ -30,14 +30,14 @@
             // Start making Requests to the WebApp
             var client = new HttpClient();
 
-            var response = await client.GetAsync("http://localhost:8888/insecure");
+            var response = await client.GetAsync("http://localhost:5000/insecure");
             await Console.Out.WriteLineAsync(await response.Content.ReadAsStringAsync());
             
-            response = await client.GetAsync("http://localhost:8888/secure");
+            response = await client.GetAsync("http://localhost:5000/secure");
             await Console.Out.WriteLineAsync(response.StatusCode.ToString());
 
             client.SetBearerToken(tokenResponse.AccessToken);
-            response = await client.GetAsync("http://localhost:8888/secure");
+            response = await client.GetAsync("http://localhost:5000/secure");
             if (!response.IsSuccessStatusCode)
             {
                 await Console.Out.WriteLineAsync(response.StatusCode.ToString());
